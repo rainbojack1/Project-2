@@ -45,5 +45,3 @@ db.sequelize.sync(syncOptions).then(function() {
 });
 
 module.exports = app;
-
-//Making a change to test out TravisCI
