@@ -3,21 +3,26 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
+    db.Buddy.findAll({}).then(function(dbBuddy) {
       res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
+        msg: "Study Buddy",
+        buddies: dbBuddy
       });
     });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.render("example", {
-        example: dbExample
+  // Load Create Account Page page
+  app.get("/add", function(req, res) {
+    res.render("add", {
+      msg: "Add a Study Buddy"
+    });
+  });
+
+  // Load buddy page and pass in an buddy by id
+  app.get("/buddy/:id", function(req, res) {
+    db.Buddy.findOne({ where: { id: req.params.id } }).then(function(dbBuddy) {
+      res.render("buddy", {
+        buddy: dbBuddy
       });
     });
   });
