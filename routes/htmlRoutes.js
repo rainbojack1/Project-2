@@ -11,19 +11,16 @@ module.exports = function(app) {
     });
   });
 
-   // Load Create Account Page page
-   app.get("/add", function(req, res) {
-      res.render("add", {
-        msg: "Add a Study Buddy",
-      });
+  // Load Create Account Page page
+  app.get("/add", function(req, res) {
+    res.render("add", {
+      msg: "Add a Study Buddy"
+    });
   });
-
 
   // Load buddy page and pass in an buddy by id
   app.get("/buddy/:id", function(req, res) {
-    db.Buddy.findOne({ where: { id: req.params.id } }).then(function(
-      dbBuddy
-    ) {
+    db.Buddy.findOne({ where: { id: req.params.id } }).then(function(dbBuddy) {
       res.render("buddy", {
         buddy: dbBuddy
       });

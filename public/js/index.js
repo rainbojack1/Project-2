@@ -69,7 +69,7 @@ var handleFormSubmit = function(event) {
     firstName: $buddyFirstNmae.val().trim(),
     lastName: $buddyLastName.val().trim(),
     email: $buddyEmail.val().trim()
-   };
+  };
 
   if (!(buddy.firstName && buddy.lastName && buddy.lastName)) {
     alert("You must enter an buddy first/last name and description!");

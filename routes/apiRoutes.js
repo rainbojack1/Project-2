@@ -18,9 +18,7 @@ module.exports = function(app) {
 
   // Delete an Buddy by id
   app.delete("/api/buddies/:id", function(req, res) {
-    db.Buddy.destroy({ where: { id: req.params.id } }).then(function(
-      dbBuddy
-    ) {
+    db.Buddy.destroy({ where: { id: req.params.id } }).then(function(dbBuddy) {
       res.json(dbBuddy);
     });
   });
