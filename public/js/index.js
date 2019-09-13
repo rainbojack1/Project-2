@@ -1,47 +1,47 @@
 // Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
+var $buddyText = $("#buddy-text");
+var $buddyDescription = $("#buddy-description");
 var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+var $buddyList = $("#buddy-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  saveExample: function(buddy) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
+      url: "api/buddys",
+      data: JSON.stringify(buddy)
     });
   },
   getExamples: function() {
     return $.ajax({
-      url: "api/examples",
+      url: "api/buddys",
       type: "GET"
     });
   },
   deleteExample: function(id) {
     return $.ajax({
-      url: "api/examples/" + id,
+      url: "api/buddys/" + id,
       type: "DELETE"
     });
   }
 };
 
-// refreshExamples gets new examples from the db and repopulates the list
+// refreshExamples gets new buddys from the db and repopulates the list
 var refreshExamples = function() {
   API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
+    var $buddys = data.map(function(buddy) {
       var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+        .text(buddy.id)
+        .attr("href", "/buddy/" + buddy.id);
 
       var $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": example.id
+          "data-id": buddy.id
         })
         .append($a);
 
@@ -54,36 +54,36 @@ var refreshExamples = function() {
       return $li;
     });
 
-    $exampleList.empty();
-    $exampleList.append($examples);
+    $buddyList.empty();
+    $buddyList.append($buddys);
   });
 };
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
+// handleFormSubmit is called whenever we submit a new buddy
+// Save the new buddy to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+  var buddy = {
+    text: $buddyText.val().trim(),
+    description: $buddyDescription.val().trim()
   };
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
+  if (!(buddy.text && buddy.description)) {
+    alert("You must enter an buddy text and description!");
     return;
   }
 
-  API.saveExample(example).then(function() {
+  API.saveExample(buddy).then(function() {
     refreshExamples();
   });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
+  $buddyText.val("");
+  $buddyDescription.val("");
 };
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
+// handleDeleteBtnClick is called when an buddy's delete button is clicked
+// Remove the buddy from the db and refresh the list
 var handleDeleteBtnClick = function() {
   var idToDelete = $(this)
     .parent()
@@ -96,4 +96,4 @@ var handleDeleteBtnClick = function() {
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+$buddyList.on("click", ".delete", handleDeleteBtnClick);
