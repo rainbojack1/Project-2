@@ -1,39 +1,40 @@
 // Get references to page elements
-var $buddyText = $("#buddy-text");
-var $buddyDescription = $("#buddy-description");
+var $buddyFirstNmae = $("#buddy-firstName");
+var $buddyLastName = $("#buddy-lastName");
+var $buddyEmail = $("#buddy-email");
 var $submitBtn = $("#submit");
 var $buddyList = $("#buddy-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(buddy) {
+  saveBuddy: function(buddy) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/buddys",
+      url: "api/buddies",
       data: JSON.stringify(buddy)
     });
   },
-  getExamples: function() {
+  getBuddies: function() {
     return $.ajax({
-      url: "api/buddys",
+      url: "api/buddies",
       type: "GET"
     });
   },
-  deleteExample: function(id) {
+  deleteBuddy: function(id) {
     return $.ajax({
-      url: "api/buddys/" + id,
+      url: "api/buddies/" + id,
       type: "DELETE"
     });
   }
 };
 
-// refreshExamples gets new buddys from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $buddys = data.map(function(buddy) {
+// refreshBuddies gets new buddies from the db and repopulates the list
+var refreshBuddies = function() {
+  API.getBuddies().then(function(data) {
+    var $buddies = data.map(function(buddy) {
       var $a = $("<a>")
         .text(buddy.id)
         .attr("href", "/buddy/" + buddy.id);
@@ -55,7 +56,7 @@ var refreshExamples = function() {
     });
 
     $buddyList.empty();
-    $buddyList.append($buddys);
+    $buddyList.append($buddies);
   });
 };
 
@@ -65,17 +66,18 @@ var handleFormSubmit = function(event) {
   event.preventDefault();
 
   var buddy = {
-    text: $buddyText.val().trim(),
-    description: $buddyDescription.val().trim()
-  };
+    firstName: $buddyFirstNmae.val().trim(),
+    lastName: $buddyLastName.val().trim(),
+    email: $buddyEmail.val().trim()
+   };
 
-  if (!(buddy.text && buddy.description)) {
-    alert("You must enter an buddy text and description!");
+  if (!(buddy.firstName && buddy.lastName && buddy.lastName)) {
+    alert("You must enter an buddy first/last name and description!");
     return;
   }
 
-  API.saveExample(buddy).then(function() {
-    refreshExamples();
+  API.saveBuddy(buddy).then(function() {
+    refreshBuddies();
   });
 
   $buddyText.val("");
@@ -89,8 +91,8 @@ var handleDeleteBtnClick = function() {
     .parent()
     .attr("data-id");
 
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
+  API.deleteBuddy(idToDelete).then(function() {
+    refreshBuddies();
   });
 };
 
