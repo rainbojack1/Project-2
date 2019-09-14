@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
   Interest.associate = function(models) {
-    Interest.hasMany(models.Buddy, {});
+    Interest.belongsTo(models.Buddy, {});
   };
   return Interest;
 };
