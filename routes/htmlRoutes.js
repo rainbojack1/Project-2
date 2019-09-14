@@ -3,9 +3,20 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Buddy.findAll({}).then(function(dbBuddy) {
+    res.render("index");
+    /*db.Buddy.findAll({}).then(function(dbBuddy) {
       res.render("index", {
         msg: "Study Buddy",
+        buddies: dbBuddy
+      });
+    });*/
+  });
+
+  // Load view all page
+  app.get("/all", function(req, res) {
+    db.Buddy.findAll({}).then(function(dbBuddy) {
+      res.render("viewAll", {
+        msg: "Find a Buddy",
         buddies: dbBuddy
       });
     });
