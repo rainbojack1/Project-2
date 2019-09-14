@@ -1,26 +1,50 @@
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>Please enter the information below to create your account</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="buddy-firstName">Buddy First Name</label>
-            <input type="text" id="buddy-firstName" class="form-control" aria-describedby="buddy-firstName" placeholder="Enter Your First Name">
-          </div>
-          <div class="form-group">
-            <label for="buddy-lastName">Buddy Last Name</label>
-            <input class="form-control" id="buddy-lastName" aria-describedby="buddy-lastName" placeholder="Enter Yoru Last Name"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="buddy-email">Buddy Email Address</label>
-            <input class="form-control" id="buddy-email" aria-describedby="buddy-email" placeholder="Enter Your Email Address"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-
-      </div>
+<div class="col-8 offset-2">
+  <h1>{{msg}}</h1>
+  <h2>Please enter the information below to create your account</h2>
+  <form class="clearfix mb-4" action="POST">
+    <div class="form-group">
+      <label for="buddy-firstName">Buddy First Name</label>
+      <input type="text" id="buddy-firstName" class="form-control" aria-describedby="buddy-firstName"
+        placeholder="Enter Your First Name">
     </div>
-  </div>
-</div>
+    <div class="form-group">
+      <label for="buddy-lastName">Buddy Last Name</label>
+      <input class="form-control" id="buddy-lastName" aria-describedby="buddy-lastName"
+        placeholder="Enter Your Last Name"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="buddy-email">Buddy Email Address</label>
+      <input class="form-control" id="buddy-email" aria-describedby="buddy-email"
+        placeholder="Enter Your Email Address"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="interest-html">
+        <input class="form-control" id="interest-html" aria-describedby="interest-html" type="checkbox" value="HTML"
+          name="interests" />
+        <span class="pl-4 pr-3">HTML</span>
+      </label>
+      <label for="interest-css">
+        <input class="form-control" id="interest-css" aria-describedby="interest-css" type="checkbox" value="CSS"
+          name="interests" />
+        <span class="pl-4 pr-3">CSS</span>
+      </label>
+      <label for="interest-js">
+        <input class="form-control" id="interest-js" aria-describedby="interest-js" type="checkbox" value="JavaScript"
+          name="interests" />
+        <span class="pl-4 pr-3">JavaScript</span>
+      </label>
+      <label for="interest-java">
+        <input class="form-control" id="interest-java" aria-describedby="interest-java" type="checkbox" value="Java"
+          name="interests" />
+        <span class="pl-4 pr-3">Java</span>
+      </label>
+    </div>
+    <div class="form-group">
+      <p>Don't see what you're looking for? Add a new interest here:</p>
+      <input type="text" id="new-interest" class="form-control" aria-describedby="new-interest"
+        placeholder="New Interest">
+    </div>
+    <button id="submit" class="btn btn-primary float-right">Submit</button>
+  </form>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+</div>
