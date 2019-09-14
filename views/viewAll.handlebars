@@ -1,0 +1,33 @@
+<div class="jumbotron">
+  {{!-- <img class="bg-image-full" src="/img/Diverse Group Working Together at Table High Res.jpg"> --}}
+  <h1 class="display-4">{{msg}}</h1>
+    <p class="lead">Welcome Aboard! You can browse through all of our buddies below. Or you can use the filters to narrow your selection.</p>
+
+</div>
+
+<div class="container" id="viewAll">
+  <div class="row">
+    <div class="col">
+      <h3>All Buddies:</h3>
+    </div>
+  </div>  
+    
+    <div id="buddy-list" class="list-group">
+      {{#each buddies}}
+      <div data-id="{{this.id}}" class="row">
+        <div class="col-md-2">
+          <a href="buddy/{{this.id}}">{{this.firstName}} {{this.lastName}} </a>
+        </div>
+        <div class="col-md-4">
+          <a><i class="far fa-envelope"></i> {{this.email}}</a>
+        </div>
+        <div class="col-md-6">
+          <p>Their interests go here.</p>
+        </div>
+    
+        {{!-- <button class="btn btn-danger float-right delete">ｘ</button> --}}
+      
+      </div>
+      {{/each}}
+    </div>
+</div>
