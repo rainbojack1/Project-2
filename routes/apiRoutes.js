@@ -17,9 +17,9 @@ module.exports = function(app) {
         email: req.body.email
       }
     })
-      .then(([interest, created]) => {
+      .then(([buddy, created]) => {
         console.log(
-          interest.get({
+          buddy.get({
             plain: true
           })
         );
