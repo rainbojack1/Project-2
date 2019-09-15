@@ -3,13 +3,9 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    res.render("index");
-    /*db.Buddy.findAll({}).then(function(dbBuddy) {
-      res.render("index", {
-        msg: "Study Buddy",
-        buddies: dbBuddy
-      });
-    });*/
+    res.render("index", {
+      msg: "My Study Buddy"
+    });
   });
 
   // Load view all page
