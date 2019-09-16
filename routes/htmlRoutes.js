@@ -18,10 +18,23 @@ module.exports = function(app) {
     });
   });
 
+  // Load Admin View all page
+  app.get("/admin", function(req, res) {
+    db.Buddy.findAll({}).then(function(dbBuddy) {
+      res.render("admin", {
+        msg: "Weoclome Administrators!!!!!!",
+        buddies: dbBuddy
+      });
+    });
+  });
+
   // Load Create Account Page page
   app.get("/add", function(req, res) {
-    res.render("add", {
-      msg: "Add a Study Buddy"
+    db.Interest.findAll({}).then(function(dbInterest) {
+      res.render("add", {
+        msg: "Add a Study Buddy",
+        interests: dbInterest
+      });
     });
   });
 

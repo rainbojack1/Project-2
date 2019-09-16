@@ -31,7 +31,14 @@ var API = {
       type: "DELETE"
     });
   },
+  getInterests: function() {
+    return $.ajax({
+      url: "api/interests",
+      type: "GET"
+    });
+  },
   saveNewInterest: function(interest) {
+    console.log("saveNewInterest was triggered");
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -83,7 +90,7 @@ var handleFormSubmit = function(event) {
     email: buddyEmail.val().trim()
   };
 
-  var interest = {
+  const interest = {
     name: newInterest.val().trim()
   };
 
@@ -96,6 +103,7 @@ var handleFormSubmit = function(event) {
   }
 
   console.log("InterestArr: ", InterestArr);
+  console.log(interest);
 
   if (!(buddy.firstName && buddy.lastName && buddy.email)) {
     alert("You must enter an buddy first/last name and email!");
@@ -114,6 +122,7 @@ var handleFormSubmit = function(event) {
 // handleDeleteBtnClick is called when an buddy's delete button is clicked
 // Remove the buddy from the db and refresh the list
 var handleDeleteBtnClick = function() {
+  console.log("Delete button clcicked");
   var idToDelete = $(this)
     .parent()
     .attr("data-id");

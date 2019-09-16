@@ -27,6 +27,13 @@ module.exports = function(app) {
       })
       .then(function(dbBuddy) {
         res.json(dbBuddy);
+        console.log(req.body.InterestArr);
+        // for (var i = 0; i < req.body.interest.length; i++) {
+        //   BuddyInterest.create ({
+        //     BuddyId: response.id,
+        //     InterestId: req.body.interest[i].id
+        //   })
+        // };
       });
   });
 
@@ -34,6 +41,13 @@ module.exports = function(app) {
   app.delete("/api/buddies/:id", function(req, res) {
     db.Buddy.destroy({ where: { id: req.params.id } }).then(function(dbBuddy) {
       res.json(dbBuddy);
+    });
+  });
+
+  // Get Intrests
+  app.get("/api/interests", function(req, res) {
+    db.Interest.findAll({}).then(function(dbInterest) {
+      res.json(dbInterest);
     });
   });
 
