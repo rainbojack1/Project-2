@@ -38,7 +38,7 @@ var API = {
     });
   },
   saveNewInterest: function(interest) {
-    console.log("saveNewInterest was triggered")
+    console.log("saveNewInterest was triggered");
     return $.ajax({
       headers: {
         "Content-Type": "application/json"

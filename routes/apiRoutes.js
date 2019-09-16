@@ -34,8 +34,7 @@ module.exports = function(app) {
         //     InterestId: req.body.interest[i].id
         //   })
         // };
-      })
-     
+      });
   });
 
   // Delete an Buddy by id
@@ -45,7 +44,7 @@ module.exports = function(app) {
     });
   });
 
-  // Get Intrests 
+  // Get Intrests
   app.get("/api/interests", function(req, res) {
     db.Interest.findAll({}).then(function(dbInterest) {
       res.json(dbInterest);
