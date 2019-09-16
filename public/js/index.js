@@ -96,6 +96,7 @@ var handleFormSubmit = function(event) {
 
   $.each($("input[name='interests']:checked"), function() {
     InterestArr.push($(this).val());
+    console.log(InterestArr);
   });
 
   if (interest.name.length > 0) {

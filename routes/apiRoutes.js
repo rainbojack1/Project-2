@@ -27,13 +27,12 @@ module.exports = function(app) {
       })
       .then(function(dbBuddy) {
         res.json(dbBuddy);
-        console.log(req.body.InterestArr);
         // for (var i = 0; i < req.body.interest.length; i++) {
-        //   BuddyInterest.create ({
+        //   BuddyInterest.create({
         //     BuddyId: response.id,
         //     InterestId: req.body.interest[i].id
-        //   })
-        // };
+        //   });
+        // }
       });
   });
 

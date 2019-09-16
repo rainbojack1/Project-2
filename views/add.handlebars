@@ -1,24 +1,40 @@
-
-<br>
-<br>
-<div class="jumbotron col-8 offset-2">
+<div class="col-8 offset-2">
   <h1 class="display-4">{{msg}}</h1>
-<p>Please create a new buddy or create an account</p>
- <div class="form-group">
-            <label for="buddy-firstName">Buddy First Name</label>
-            <input type="text" id="buddy-firstName" class="form-control" aria-describedby="buddy-firstName" placeholder="Enter Your First Name">
-          </div>
-          <div class="form-group">
-            <label for="buddy-lastName">Buddy Last Name</label>
-            <input class="form-control" id="buddy-lastName" aria-describedby="buddy-lastName" placeholder="Enter Your Last Name"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="buddy-email">Buddy Email Address</label>
-            <input class="form-control" id="buddy-email" aria-describedby="buddy-email" placeholder="Enter Your Email Address"></textarea>
-          </div>
-  <hr class="my-4">
-  <button type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
-
+  <p>Please create a new buddy or create an account</p>
+  <form class="clearfix mb-4" action="POST">
+  <div class="form-group">
+    <label for="buddy-firstName">Buddy First Name</label>
+    <input type="text" id="buddy-firstName" class="form-control" aria-describedby="buddy-firstName"
+      placeholder="Enter Your First Name">
+  </div>
+  <div class="form-group">
+    <label for="buddy-lastName">Buddy Last Name</label>
+    <input class="form-control" id="buddy-lastName" aria-describedby="buddy-lastName"
+      placeholder="Enter Your Last Name"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="buddy-email">Buddy Email Address</label>
+    <input class="form-control" id="buddy-email" aria-describedby="buddy-email"
+      placeholder="Enter Your Email Address"></textarea>
+  </div>
+  <p>Click any of the check boxes below to show your your intrests in the subject</p>
+  <div class="form-group">
+    {{#each interests}}
+    {{!-- <label for="interest-{{this.name}}"> --}}
+      <label>
+        <input class="indeterminate-checkbox" id="{{this.id}}" aria-describedby="interest-html" type="checkbox"
+        value="{{this.name}}" name="interests" />
+      <span class="pl-4 pr-3">{{this.name}}</span>
+    </label>
+    {{/each}}
+  </div>
+  <div class="form-group">
+    <p>Don't see what you're looking for? Add a new interest here:</p>
+    <input type="text" id="new-interest" class="form-control" aria-describedby="new-interest"
+      placeholder="New Interest">
+  </div>
+  <button id="submit"  type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
+  <br>
 </div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
