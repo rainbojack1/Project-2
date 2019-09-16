@@ -1,14 +1,17 @@
 .container {
-  margin-top: 50px;
-  box-shadow: 0 0 30px black;
+  box-shadow: 0 0 20px black;
   padding:0 15px 0 15px;
 }
 .jumbotron {
   background-image: url("../img/jumbo_logo.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  height: 300px;
+  height: 370px;
 }
 .list-group-item {
-  line-height: 2.5;
+  /* line-height: 2.5; */
 }
+.nav-wrapper{
+  margin-top: -20px;
+  background-color: grey;
+ }
