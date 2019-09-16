@@ -1,3 +1,8 @@
+<div class="container" id="viewAll">
+<div class="jumbotron"></div>
+
+<a href="/">HOME</a> | <a href="/add">CREATE ACCOUNT</a> | <a href="/all">FIND ALL BUDDIES</a> | <a href="/admin">ADMIN</a>
+<p class="lead">Welcome Aboard! You can browse through all of our buddies below. Or you can use the filters to narrow your selection.</p>
 <div class="col-8 offset-2">
   <h1>{{msg}}</h1>
   <h2>Please enter the information below to create your account</h2>
@@ -17,37 +22,28 @@
       <input class="form-control" id="buddy-email" aria-describedby="buddy-email"
         placeholder="Enter Your Email Address"></textarea>
     </div>
+    <p>Click any of the check boxes below to show your your intrests in the subject</p>
     <div class="form-group">
-      <label for="interest-html">
-        <input class="form-control" id="interest-html" aria-describedby="interest-html" type="checkbox" value="HTML"
-          name="interests" />
-        <span class="pl-4 pr-3">HTML</span>
+     {{#each interests}}       
+        <label for="interest-{{this.name}}">
+        <input class="form-control" id="{{this.id}}" aria-describedby="interest-html" type="checkbox" value="{{this.name}}" name="interests" />
+        <span class="pl-4 pr-3">{{this.name}}</span>
+      
       </label>
-      <label for="interest-css">
-        <input class="form-control" id="interest-css" aria-describedby="interest-css" type="checkbox" value="CSS"
-          name="interests" />
-        <span class="pl-4 pr-3">CSS</span>
-      </label>
-      <label for="interest-js">
-        <input class="form-control" id="interest-js" aria-describedby="interest-js" type="checkbox" value="JavaScript"
-          name="interests" />
-        <span class="pl-4 pr-3">JavaScript</span>
-      </label>
-      <label for="interest-java">
-        <input class="form-control" id="interest-java" aria-describedby="interest-java" type="checkbox" value="Java"
-          name="interests" />
-        <span class="pl-4 pr-3">Java</span>
-      </label>
-    </div>
+         {{/each}}
+      </div>
+ 
     <div class="form-group">
       <p>Don't see what you're looking for? Add a new interest here:</p>
       <input type="text" id="new-interest" class="form-control" aria-describedby="new-interest"
         placeholder="New Interest">
     </div>
     <button id="submit" class="btn btn-primary float-right">Submit</button>
-  </form>
 
+  </form>
+    <br>
 </div>
+
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
