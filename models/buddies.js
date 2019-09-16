@@ -24,7 +24,11 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Buddy.associate = function(models) {
-    Buddy.hasMany(models.Interest, {});
+    Buddy.belongsToMany(models.Interest, {
+      through: models.BuddyInterest,
+      as: "buddies"
+    });
   };
+
   return Buddy;
 };

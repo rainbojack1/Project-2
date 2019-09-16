@@ -1,14 +1,14 @@
 {
   "development": {
     "username": "root",
-    "password": "Snapnurse",
+    "password": "@lmost12",
     "database": "buddydb",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "Snapnurse",
+    "password": "@lmost12",
     "database": "buddydb",
     "host": "localhost",
     "dialect": "mysql",

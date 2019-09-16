@@ -1,9 +1,11 @@
 // Get references to page elements
-var $buddyFirstNmae = $("#buddy-firstName");
-var $buddyLastName = $("#buddy-lastName");
-var $buddyEmail = $("#buddy-email");
-var $submitBtn = $("#submit");
-var $buddyList = $("#buddy-list");
+var buddyFirstNmae = $("#buddy-firstName");
+var buddyLastName = $("#buddy-lastName");
+var buddyEmail = $("#buddy-email");
+var newInterest = $("#new-interest");
+var InterestArr = [];
+var submitBtn = $("#submit");
+var buddyList = $("#buddy-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -27,6 +29,23 @@ var API = {
     return $.ajax({
       url: "api/buddies/" + id,
       type: "DELETE"
+    });
+  },
+  getInterests: function() {
+    return $.ajax({
+      url: "api/interests",
+      type: "GET"
+    });
+  },
+  saveNewInterest: function(interest) {
+    console.log("saveNewInterest was triggered");
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/interests",
+      data: JSON.stringify(interest)
     });
   }
 };
@@ -66,27 +85,44 @@ var handleFormSubmit = function(event) {
   event.preventDefault();
 
   var buddy = {
-    firstName: $buddyFirstNmae.val().trim(),
-    lastName: $buddyLastName.val().trim(),
-    email: $buddyEmail.val().trim()
+    firstName: buddyFirstNmae.val().trim(),
+    lastName: buddyLastName.val().trim(),
+    email: buddyEmail.val().trim()
   };
 
-  if (!(buddy.firstName && buddy.lastName && buddy.lastName)) {
-    alert("You must enter an buddy first/last name and description!");
+  const interest = {
+    name: newInterest.val().trim()
+  };
+
+  $.each($("input[name='interests']:checked"), function() {
+    InterestArr.push($(this).val());
+  });
+
+  if (interest.name.length > 0) {
+    InterestArr.push(interest.name);
+  }
+
+  console.log("InterestArr: ", InterestArr);
+  console.log(interest);
+
+  if (!(buddy.firstName && buddy.lastName && buddy.email)) {
+    alert("You must enter an buddy first/last name and email!");
     return;
   }
 
   API.saveBuddy(buddy).then(function() {
+    API.saveNewInterest(interest);
     refreshBuddies();
   });
 
-  $buddyText.val("");
-  $buddyDescription.val("");
+  // $buddyText.val("");
+  // $buddyDescription.val("");
 };
 
 // handleDeleteBtnClick is called when an buddy's delete button is clicked
 // Remove the buddy from the db and refresh the list
 var handleDeleteBtnClick = function() {
+  console.log("Delete button clcicked");
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
@@ -97,5 +133,5 @@ var handleDeleteBtnClick = function() {
 };
 
 // Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$buddyList.on("click", ".delete", handleDeleteBtnClick);
+submitBtn.on("click", handleFormSubmit);
+buddyList.on("click", ".delete", handleDeleteBtnClick);

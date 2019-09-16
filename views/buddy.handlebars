@@ -1,19 +1,27 @@
-<div class="container">
+<div class="container" id="viewAll">
+  <div class="jumbotron"></div>
+
+  <a href="/">HOME</a> | <a href="/add">CREATE ACCOUNT</a> | <a href="/all">FIND ALL BUDDIES</a> | <a
+    href="/admin">ADMIN</a>
   <div class="row">
     <div class="col-8 offset-2">
       <div class="card mt-4">
         <div class="card-body">
           <h5 class="card-title">Study Buddy</h5>
-          <p>
+          {{!-- <p>
             <strong>ID</strong>: {{buddy.id}}</p>
-          <p>
+          <p> --}}
           <p>
             <strong>Buddies Name</strong>: {{buddy.firstName}} {{buddy.lastName}}</p>
           <p>
             <strong>Email Address:</strong> {{buddy.email}}</p>
-            <a href="/">← Back To Home</a>
+          <p>
+            <strong>Interest:</strong> Comming Soon!!!!</p>
+          <a href="/all">← Back To All Buddies</a>
+          <br>
         </div>
       </div>
     </div>
   </div>
+  <br>
 </div>
