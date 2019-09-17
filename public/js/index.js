@@ -5,7 +5,8 @@ var buddyEmail = $("#buddy-email");
 var newInterest = $("#new-interest");
 var InterestArr = [];
 var submitBtn = $("#submit");
-var buddyList = $("#buddy-list");
+// var buddyList = $("#buddy-list");
+var adminList = $("#admin-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -51,33 +52,33 @@ var API = {
 };
 
 // refreshBuddies gets new buddies from the db and repopulates the list
-var refreshBuddies = function() {
-  API.getBuddies().then(function(data) {
-    var $buddies = data.map(function(buddy) {
-      var $a = $("<a>")
-        .text(buddy.id)
-        .attr("href", "/buddy/" + buddy.id);
+// var refreshBuddies = function() {
+//   API.getBuddies().then(function(data) {
+//     var $buddies = data.map(function(buddy) {
+//       var $a = $("<a>")
+//         .text(buddy.id)
+//         .attr("href", "/buddy/" + buddy.id);
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": buddy.id
-        })
-        .append($a);
+//       var $li = $("<li>")
+//         .attr({
+//           class: "list-group-item",
+//           "data-id": buddy.id
+//         })
+//         .append($a);
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+//       var $button = $("<button>")
+//         .addClass("btn btn-danger float-right delete")
+//         .text("ｘ");
 
-      $li.append($button);
+//       $li.append($button);
 
-      return $li;
-    });
+//       return $li;
+//     });
 
-    $buddyList.empty();
-    $buddyList.append($buddies);
-  });
-};
+//     $buddyList.empty();
+//     $buddyList.append($buddies);
+//   });
+// };
 
 // handleFormSubmit is called whenever we submit a new buddy
 // Save the new buddy to the db and refresh the list
@@ -113,7 +114,7 @@ var handleFormSubmit = function(event) {
 
   API.saveBuddy(buddy).then(function() {
     API.saveNewInterest(interest);
-    refreshBuddies();
+    // refreshBuddies();
   });
 
   // $buddyText.val("");
@@ -123,16 +124,16 @@ var handleFormSubmit = function(event) {
 // handleDeleteBtnClick is called when an buddy's delete button is clicked
 // Remove the buddy from the db and refresh the list
 var handleDeleteBtnClick = function() {
-  console.log("Delete button clcicked");
+  console.log("Delete button clicked");
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
 
   API.deleteBuddy(idToDelete).then(function() {
-    refreshBuddies();
+    location.reload();
   });
 };
 
 // Add event listeners to the submit and delete buttons
 submitBtn.on("click", handleFormSubmit);
-buddyList.on("click", ".delete", handleDeleteBtnClick);
+adminList.on("click", "#admin-delete", handleDeleteBtnClick);

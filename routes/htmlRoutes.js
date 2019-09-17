@@ -12,7 +12,7 @@ module.exports = function(app) {
   app.get("/all", function(req, res) {
     db.Buddy.findAll({}).then(function(dbBuddy) {
       res.render("viewAll", {
-        msg: "Find a Buddy",
+        msg: "All Buddies:",
         buddies: dbBuddy
       });
     });
@@ -22,7 +22,7 @@ module.exports = function(app) {
   app.get("/admin", function(req, res) {
     db.Buddy.findAll({}).then(function(dbBuddy) {
       res.render("admin", {
-        msg: "Weoclome Administrators!!!!!!",
+        msg: "ADMIN view:",
         buddies: dbBuddy
       });
     });

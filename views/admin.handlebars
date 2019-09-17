@@ -1,26 +1,38 @@
-  <p class="lead">Welcome Aboard! You can browse through all of our buddies below. Or you can use the filters to narrow
-    your selection.</p>
+<div class="col-8 offset-2">
+  <h2 class="display-4">{{msg}}</h2>
 
   <div class="row">
     <div class="col">
-      {{!-- <h2 class="display-4">{{msg}}</h2> --}}
-      <h3>Welcome to the ADMIN page:</h3>
     </div>
   </div>
-  <div id="buddy-list" class="list-group">
+
+  <div id="admin-list" class="list-group">
     {{#each buddies}}
-    <div data-id="{{this.id}}" class="row">
-      <div class="col-md-3">
-        <a href="buddy/{{this.id}}">{{this.firstName}} {{this.lastName}} </a>
-      </div>
-      <div class="col-md-4">
-        <a><i class="far fa-envelope"></i> {{this.email}}</a>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-danger float-right delete">ｘ</button>
-      </div>
-    </div>
+    <ul class="collection">
+      <li data-id="{{this.id}}" class="collection-item avatar">
+        <i class="material-icons circle teal">person</i>
+        <span class="title">Buddy Details:</span>
+        <p>Name: {{this.firstName}} {{this.lastName}} <br>
+          Email: {{this.email}}
+        </p>
+        <button id="admin-delete" class="secondary-content delete"><i class="material-icons">delete</i></button>
+      </li>
+    </ul>
     {{/each}}
-    <br>
+  </div>
+
+  {{!-- <div id="admin-list" class="list-group">
+    {{#each buddies}}
+    <li data-id="{{this.id}}" class="list-group-item">
+            <a href="buddy/{{this.id}}">{{this.firstName}} {{this.lastName}}</a>
+            <a><i class="pl-5 pr-2 far fa-envelope"></i>{{this.email}}</a>
+            <button id="admin-delete" class="btn btn-danger float-right delete">ｘ</button>
+          </li>
+          {{/each}}
+        </ul>
+   <br>
   </div>
 </div>
+</div> --}}
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/js/index.js"></script>
