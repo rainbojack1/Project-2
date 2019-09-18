@@ -125,9 +125,9 @@ var handleFormSubmit = function(event) {
   if (interest.name.length > 0) {
     API.saveNewInterest(interest);
   }
-      
-      // refreshBuddies();
-    /*})
+
+  // refreshBuddies();
+  /*})
     .then(function() {
       window.location.replace("https://www.google.com");
     });*/
