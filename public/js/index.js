@@ -88,7 +88,8 @@ var handleFormSubmit = function(event) {
   var buddy = {
     firstName: buddyFirstNmae.val().trim(),
     lastName: buddyLastName.val().trim(),
-    email: buddyEmail.val().trim()
+    email: buddyEmail.val().trim(),
+    interests: InterestArr
   };
 
   var interest = {

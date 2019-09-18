@@ -10,6 +10,7 @@ module.exports = function(app) {
 
   // Create a new Buddy
   app.post("/api/buddies", function(req, res) {
+    // console.log(req.body);
     db.Buddy.findOrCreate({
       where: {
         firstName: req.body.firstName,
@@ -24,15 +25,16 @@ module.exports = function(app) {
           })
         );
         console.log(created);
+        // console.log(buddy);
+        for (var i = 0; i < req.body.interests.length; i++) {
+          db.BuddyInterest.create({
+            BuddyId: buddy.id,
+            InterestId: req.body.interests[i]
+          });
+        }
       })
       .then(function(dbBuddy) {
         res.json(dbBuddy);
-        // for (var i = 0; i < req.body.interest.length; i++) {
-        //   BuddyInterest.create({
-        //     BuddyId: response.id,
-        //     InterestId: req.body.interest[i].id
-        //   });
-        // }
       });
   });
 

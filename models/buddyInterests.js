@@ -5,6 +5,20 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true
     }
+    // BuddyId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   validate: {
+    //     len: [1]
+    //   }
+    // },
+    // InterestId: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    //   validate: {
+    //     len: [1]
+    //   }
+    // }
   });
 
   return BuddyInterest;
