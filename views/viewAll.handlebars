@@ -9,17 +9,14 @@
 
   <div id="buddy-list" class="list-group">
     {{#each buddies}}
-    <div data-id="{{this.id}}" class="row">
-      <div class="col l2">
-        <a href="buddy/{{this.id}}">{{this.firstName}} {{this.lastName}} </a>
-      </div>
-      <div class="col l2">
-        <a><i class="far fa-envelope"></i> {{this.email}}</a>
-      </div>
-      <div class="col l">
-        <p>Their interests go here.</p>
-      </div>
-    </div>
+    <ul class="collection">
+      <li data-id="{{this.id}}" class="collection-item avatar">
+        <i class="material-icons circle teal">person</i>
+        <span class="title">Buddy Details:</span>
+        <p>Name: {{this.firstName}} {{this.lastName}} <br>
+          <i class="far fa-envelope"></i> : {{this.email}}
+        </p>
+      </li>
+    </ul>
     {{/each}}
-    
-    <br>
+  </div>
