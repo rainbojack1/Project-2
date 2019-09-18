@@ -47,6 +47,15 @@ module.exports = function(app) {
     });
   });
 
+  // app.get("/find", function(req, res) {
+  //   db.Buddy.findAll({}).then(function(dbBuddy) { Instead of dbbuddy put the name of the joined database
+  //     res.render("viewAll", {
+  //       msg: "Find a Buddy:",
+  //       //DATABASE HERE
+  //     });
+  //   });
+  // });
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
