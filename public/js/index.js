@@ -39,13 +39,13 @@ var API = {
     });
   },
   saveNewInterest: function(interest) {
-    console.log("saveNewInterest was triggered");
+    console.log("saveNewInterest was triggered for " + interest);
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/interests",
+      url: "/api/interests",
       data: JSON.stringify(interest)
     });
   }
@@ -91,7 +91,7 @@ var handleFormSubmit = function(event) {
     email: buddyEmail.val().trim()
   };
 
-  const interest = {
+  var interest = {
     name: newInterest.val().trim()
   };
 
@@ -107,15 +107,30 @@ var handleFormSubmit = function(event) {
   console.log("InterestArr: ", InterestArr);
   console.log(interest);
 
-  if (!(buddy.firstName && buddy.lastName && buddy.email)) {
-    alert("You must enter an buddy first/last name and email!");
+  if (
+    !(
+      buddy.firstName &&
+      buddy.lastName &&
+      buddy.email &&
+      InterestArr.length > 0
+    )
+  ) {
+    alert(
+      "You must enter a buddy first name, last name, email, and at least one interest!"
+    );
     return;
   }
 
-  API.saveBuddy(buddy).then(function() {
+  API.saveBuddy(buddy);
+  if (interest.name.length > 0) {
     API.saveNewInterest(interest);
-    // refreshBuddies();
-  });
+  }
+
+  // refreshBuddies();
+  /*})
+    .then(function() {
+      window.location.replace("https://www.google.com");
+    });*/
 
   // $buddyText.val("");
   // $buddyDescription.val("");
