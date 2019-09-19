@@ -14,7 +14,8 @@
         <i class="material-icons circle teal">person</i>
         <span class="title">Buddy Details:</span>
         <p>Name: {{this.firstName}} {{this.lastName}} <br>
-          <i class="far fa-envelope"></i> : {{this.email}}
+          <i class="far fa-envelope"></i> :
+          <a href="mailto:{{this.email}}?Subject=Study Buddy" target="_top">{{this.email}}</a>
         </p>
       </li>
     </ul>
