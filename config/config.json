@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "@lmost12",
+    "password": "Snapnurse",
     "database": "buddydb",
     "host": "localhost",
     "dialect": "mysql"
