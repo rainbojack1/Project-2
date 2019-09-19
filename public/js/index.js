@@ -39,7 +39,6 @@ var API = {
     });
   },
   saveNewInterest: function(interest) {
-    console.log("saveNewInterest was triggered for " + interest);
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -50,35 +49,6 @@ var API = {
     });
   }
 };
-
-// refreshBuddies gets new buddies from the db and repopulates the list
-// var refreshBuddies = function() {
-//   API.getBuddies().then(function(data) {
-//     var $buddies = data.map(function(buddy) {
-//       var $a = $("<a>")
-//         .text(buddy.id)
-//         .attr("href", "/buddy/" + buddy.id);
-
-//       var $li = $("<li>")
-//         .attr({
-//           class: "list-group-item",
-//           "data-id": buddy.id
-//         })
-//         .append($a);
-
-//       var $button = $("<button>")
-//         .addClass("btn btn-danger float-right delete")
-//         .text("ｘ");
-
-//       $li.append($button);
-
-//       return $li;
-//     });
-
-//     $buddyList.empty();
-//     $buddyList.append($buddies);
-//   });
-// };
 
 // handleFormSubmit is called whenever we submit a new buddy
 // Save the new buddy to the db and refresh the list
@@ -122,19 +92,15 @@ var handleFormSubmit = function(event) {
     return;
   }
 
-  API.saveBuddy(buddy);
   if (interest.name.length > 0) {
-    API.saveNewInterest(interest);
+    API.saveNewInterest(interest).then(function() {
+      API.saveBuddy(buddy);
+    });
+  } else {
+    API.saveBuddy(buddy).then(function() {
+      // window.location.pathname = "/all";
+    });
   }
-
-  // refreshBuddies();
-  /*})
-    .then(function() {
-      window.location.replace("https://www.google.com");
-    });*/
-
-  // $buddyText.val("");
-  // $buddyDescription.val("");
 };
 
 // handleDeleteBtnClick is called when an buddy's delete button is clicked

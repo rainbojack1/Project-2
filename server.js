@@ -7,17 +7,6 @@ var db = require("./models");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
-// if (process.env.JAWSDB_URL) {
-//   connection = mysql.createConnection(process.env.JAWSDB_URL);
-// } else {
-//   connection = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password: "Snapnurse",
-//     database: "buddydb"
-//   });
-// }
-
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
