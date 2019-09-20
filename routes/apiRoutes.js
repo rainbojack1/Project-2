@@ -39,7 +39,6 @@ module.exports = function(app) {
             plain: true
           })
         );
-        console.log(buddy);
         console.log(created);
         console.log(req.body.interests);
         for (var i = 0; i < req.body.interests.length; i++) {
