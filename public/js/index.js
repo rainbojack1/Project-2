@@ -2,7 +2,7 @@
 var buddyFirstNmae = $("#buddy-firstName");
 var buddyLastName = $("#buddy-lastName");
 var buddyEmail = $("#buddy-email");
-var newInterest = $("#new-interest");
+//var newInterest = $("#new-interest");
 var InterestArr = [];
 var submitBtn = $("#submit");
 // var buddyList = $("#buddy-list");
