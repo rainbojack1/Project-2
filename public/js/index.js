@@ -97,9 +97,7 @@ var handleFormSubmit = function(event) {
   //     API.saveBuddy(buddy);
   //   });
   // } else {
-    API.saveBuddy(buddy).then(function() {
-      // window.location.pathname = "/all";
-    });
+  API.saveBuddy(buddy);
   // }
 };
 
