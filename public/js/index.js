@@ -1,10 +1,12 @@
 // Get references to page elements
-var buddyFirstNmae = $("#buddy-firstName");
+var buddyFirstName = $("#buddy-firstName");
 var buddyLastName = $("#buddy-lastName");
 var buddyEmail = $("#buddy-email");
 var InterestArr = [];
+var SearchArr = [];
 var submitBtn = $("#submit");
 var adminList = $("#admin-list");
+var searchBtn = $("#search");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -36,6 +38,16 @@ var API = {
       type: "GET"
     });
   },
+  searchBuddies: function(SearchArr) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/search",
+      data: JSON.stringify(SearchArr)
+    });
+  },
   saveNewInterest: function(interest) {
     return $.ajax({
       headers: {
@@ -54,7 +66,7 @@ var handleFormSubmit = function(event) {
   event.preventDefault();
 
   var buddy = {
-    firstName: buddyFirstNmae.val().trim(),
+    firstName: buddyFirstName.val().trim(),
     lastName: buddyLastName.val().trim(),
     email: buddyEmail.val().trim(),
     interests: InterestArr
@@ -65,9 +77,9 @@ var handleFormSubmit = function(event) {
     console.log(InterestArr);
   });
 
-  if (interest.name.length > 0) {
-    InterestArr.push(interest.name);
-  }
+  // if (interest.name.length > 0) {
+  //   InterestArr.push(interest.name);
+  // }
 
   console.log("InterestArr: ", InterestArr);
 
@@ -88,6 +100,24 @@ var handleFormSubmit = function(event) {
   API.saveBuddy(buddy);
 };
 
+// handleFormSubmit is called whenever we submit a new buddy
+// Save the new buddy to the db and refresh the list
+var handleSearchSubmit = function(event) {
+  event.preventDefault();
+
+  $.each($("input[name='searches']:checked"), function() {
+    SearchArr.push($(this).val());
+  });
+  console.log(SearchArr);
+  API.searchBuddies(SearchArr);
+
+  // if (searches.name.length > 0) {
+  //   SearchArr.push(searches.name);
+  // }
+
+  // console.log("SearchArr: ", SearchArr);
+  // API.saveBuddy(buddy);
+};
 // handleDeleteBtnClick is called when an buddy's delete button is clicked
 // Remove the buddy from the db and refresh the list
 var handleDeleteBtnClick = function() {
@@ -104,3 +134,4 @@ var handleDeleteBtnClick = function() {
 // Add event listeners to the submit and delete buttons
 submitBtn.on("click", handleFormSubmit);
 adminList.on("click", "#admin-delete", handleDeleteBtnClick);
+searchBtn.on("click", handleSearchSubmit);

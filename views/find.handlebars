@@ -1,0 +1,36 @@
+<div class="col-8 offset-2">
+  <h1 class="display-4">{{msg}}</h1>
+  <p>Enter your search data below to find the perfect buddy:</p>
+  <form action="/app/found" class="clearfix mb-4" >
+  {{!-- <div class="form-group">
+    <label for="buddy-firstName">Buddy First Name</label>
+    <input type="search" id="searchTerm" name="term" class="form-control" placeholder="Search any of the listed forms above">
+  </div> --}}
+  {{!-- <div class="form-group">
+    <label for="buddy-lastName">Buddy Last Name</label>
+    <input class="form-control" id="buddy-lastName" aria-describedby="buddy-lastName"
+      placeholder="Enter Your Last Name"></textarea>
+  </div> --}}
+  {{!-- <div class="form-group">
+    <label for="buddy-email">Buddy Email Address</label>
+    <input class="form-control" id="buddy-email" aria-describedby="buddy-email"
+      placeholder="Enter Your Email Address"></textarea>
+  </div> --}}
+  <p>Click any of the check boxes below to serach for that perfect buddy</p>
+   
+  <div class="form-group">
+    {{#each interests}}
+      <label>
+      <input class="indeterminate-checkbox" id="{{this.id}}" type="checkbox" value="{{this.id}}" name="searches" />
+      <span class="pl-4 pr-3">{{this.name}}</span>
+    </label>
+    {{/each}}
+ 
+  </div>
+
+  <button id="search"  type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
+  <br>
+</div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script src="/routes/htmlRoutes.js"></script>
