@@ -3,14 +3,29 @@ var db = require("../models");
 module.exports = function(app) {
   // Get all buddies
   app.get("/api/buddies", function(req, res) {
-    db.Buddy.findAll({}).then(function(dbBuddy) {
+    db.Buddy.findAll({
+      include: [
+        {
+          model: db.Interest,
+          as: "interests",
+          required: false,
+          // Pass in the Product attributes that you want to retrieve
+          attributes: ["id", "name"],
+          through: {
+            // This block of code allows you to retrieve the properties of the join table
+            model: db.BuddyInterests,
+            as: "buddyInterests"
+          }
+        }
+      ]
+    }).then(function(dbBuddy) {
       res.json(dbBuddy);
     });
   });
 
   // Create a new Buddy
   app.post("/api/buddies", function(req, res) {
-    // console.log(req.body);
+    console.log("New Buddy: ", req.body);
     db.Buddy.findOrCreate({
       where: {
         firstName: req.body.firstName,
@@ -24,13 +39,24 @@ module.exports = function(app) {
             plain: true
           })
         );
+        console.log(buddy);
         console.log(created);
-        // console.log(buddy);
+        console.log(req.body.interests);
         for (var i = 0; i < req.body.interests.length; i++) {
+          console.log("=============HERE'S MY NEW BUDDY INTEREST=============");
+          console.log(req.body.interests[i]);
           db.BuddyInterest.create({
-            BuddyId: buddy.id,
+            BuddyId: buddy.dataValues.id,
             InterestId: req.body.interests[i]
-          });
+          })
+            .then(response => {
+              console.log("Success");
+              console.log(response);
+            })
+            .catch(err => {
+              console.log("Error");
+              console.log(err);
+            });
         }
       })
       .then(function(dbBuddy) {

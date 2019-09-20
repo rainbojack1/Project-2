@@ -11,6 +11,7 @@ var adminList = $("#admin-list");
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveBuddy: function(buddy) {
+    console.log("This is saveBuddy");
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
