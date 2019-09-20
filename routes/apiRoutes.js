@@ -25,7 +25,7 @@ module.exports = function(app) {
 
   // Create a new Buddy
   app.post("/api/buddies", function(req, res) {
-    // console.log(req.body);
+    console.log("New Buddy: ", req.body);
     db.Buddy.findOrCreate({
       where: {
         firstName: req.body.firstName,
