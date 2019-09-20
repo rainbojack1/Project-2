@@ -15,9 +15,15 @@
         <span class="title">Buddy Details:</span>
         <p>Name: <a href="/buddy/{{this.id}}">{{this.firstName}} {{this.lastName}}</a> <br>
           <i class="far fa-envelope"></i> :
-          <a href="mailto:{{this.email}}?Subject=Study Buddy" target="_top">{{this.email}}</a>
+          <a href="mailto:{{this.email}}?Subject=Study Buddy" target="_top">{{this.email}}</a><br>
+          Interests:
+           {{#each interests}}
+           {{this.name}}
+          {{/each}}
         </p>
+        <a href="#!" class="secondary-content">{{this.interests.name}}</i></a>
       </li>
     </ul>
+     
     {{/each}}
   </div>
