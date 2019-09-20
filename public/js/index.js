@@ -2,7 +2,7 @@
 var buddyFirstNmae = $("#buddy-firstName");
 var buddyLastName = $("#buddy-lastName");
 var buddyEmail = $("#buddy-email");
-var newInterest = $("#new-interest");
+//var newInterest = $("#new-interest");
 var InterestArr = [];
 var submitBtn = $("#submit");
 // var buddyList = $("#buddy-list");
@@ -11,7 +11,6 @@ var adminList = $("#admin-list");
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveBuddy: function(buddy) {
-    console.log("This is saveBuddy");
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -63,21 +62,21 @@ var handleFormSubmit = function(event) {
     interests: InterestArr
   };
 
-  var interest = {
-    name: newInterest.val().trim()
-  };
+  // var interest = {
+  //   name: newInterest.val().trim()
+  // };
 
   $.each($("input[name='interests']:checked"), function() {
     InterestArr.push($(this).val());
     console.log(InterestArr);
   });
 
-  if (interest.name.length > 0) {
-    InterestArr.push(interest.name);
-  }
+  // if (interest.name.length > 0) {
+  //   InterestArr.push(interest.name);
+  // }
 
   console.log("InterestArr: ", InterestArr);
-  console.log(interest);
+  //console.log(interest);
 
   if (
     !(
@@ -93,15 +92,13 @@ var handleFormSubmit = function(event) {
     return;
   }
 
-  if (interest.name.length > 0) {
-    API.saveNewInterest(interest).then(function() {
-      API.saveBuddy(buddy);
-    });
-  } else {
-    API.saveBuddy(buddy).then(function() {
-      // window.location.pathname = "/all";
-    });
-  }
+  // if (interest.name.length > 0) {
+  //   API.saveNewInterest(interest).then(function() {
+  //     API.saveBuddy(buddy);
+  //   });
+  // } else {
+  API.saveBuddy(buddy);
+  // }
 };
 
 // handleDeleteBtnClick is called when an buddy's delete button is clicked
