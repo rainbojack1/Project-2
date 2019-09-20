@@ -1,10 +1,16 @@
-  <p class="lead">Welcome Aboard! You can browse through all of our buddies below. Or you can use the filters to narrow
-    your selection.</p>
-
+  <p class="lead">Here is a list of the buddies with the same interests:</p>
   <div class="row">
     <div class="col-8 offset-2">
       <h2 class="display-4">{{msg}}</h2>
     </div>
+  </div>
+
+<div id="buddy-list" class="list-group">
+    {{#each buddyinterests}}
+    <p>Testing: <br>
+    {{this.BuddyId}}
+    </p>
+      {{/each}}
   </div>
 
   <div id="buddy-list" class="list-group">
@@ -29,3 +35,6 @@
   </div>
 
   <a href="example/{{this.id}}">{{this.text}}</a>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="/routes/htmlRoutes.js"></script>
