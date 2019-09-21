@@ -1,21 +1,37 @@
+body {
+  background-image: url("../img/leather_1.png");
+}
+
 .container {
   box-shadow: 0 0 20px black;
   padding:0 15px 0 15px;
+  background-color: white;
+  width: 90% !important;
 }
+
 .jumbotron {
   background-image: url("../img/jumbo_logo.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 370px;
 }
-.list-group-item {
-  /* line-height: 2.5; */
-}
+
 .nav-wrapper{
   margin-top: -20px;
   background-color: grey;
  }
 
+ .center {
+   text-align: center;
+   margin: auto;
+ }
+ 
  #howitworks{
    text-align: center;
+ }
+
+ @media screen and (max-width: 1350px) {
+   .jumbotron {
+     height: 325px;
+   }
  }

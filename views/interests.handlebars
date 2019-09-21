@@ -1,0 +1,53 @@
+<div class="row">
+    <header>
+        <h3>Focus on {{interest.name}}</h3>
+    </header>
+</div>
+<div class="row">
+    <h5 class="center">Additional Resources</h5>
+</div>
+<div class="row">
+    <div class="col-md-6 center">
+        <p>Useful Links</p>
+        {{!-- {{#ifEquals interest.name "HTML"}}
+        <ul>
+            <li>https://htmlcheatsheet.com/</li>
+            <li>https://www.codecademy.com/learn/learn-html</li>
+            <li>https://www.w3schools.com/html/</li>
+            <li>https://www.learn-html.org/</li>
+        </ul>
+        {{/ifEquals}} --}}
+
+    </div>
+    <div class="col-md-6 center">
+        <p>Placeholder for Videos</p>
+    </div>
+  
+</div>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    function handlebarHelper() {
+        Handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
+            return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+        });
+    }
+
+    function findVideos() {
+        var queryUrl = "https://www.youtube.com/results?search_query={{interests.name}}";
+        console.log("queryUrl = ", queryUrl);
+        $.ajax({
+            url: queryUrl,
+            type: "GET"
+        }).then(function (response) {
+            console.log(response);
+        });
+    }
+
+    function displayResults(data) {
+        var vid = $("<div>")
+    }
+
+    handlebarHelper();
+</script>

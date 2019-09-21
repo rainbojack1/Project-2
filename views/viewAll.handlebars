@@ -18,7 +18,7 @@
           <a href="mailto:{{this.email}}?Subject=Study Buddy" target="_top">{{this.email}}</a><br>
           Interests:
            {{#each interests}}
-           {{this.name}},
+           <a href="/interest/{{this.id}}">{{this.name}}, </a>
           {{/each}}
         </p>
         <a href="#!" class="secondary-content">{{this.interests.name}}</i></a>
