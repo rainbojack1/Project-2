@@ -80,6 +80,31 @@ module.exports = function(app) {
     });
   });
 
+  // Load interst page and pass in an interest by id
+  app.get("/interest/:id", function(req, res) {
+    db.Interest.findOne({
+      where: { id: req.params.id }
+      // include: [
+      //   {
+      //     model: db.Interest,
+      //     as: "interests",
+      //     required: false,
+      //     // Pass in the Interest attributes that you want to retrieve
+      //     attributes: ["id", "name"],
+      //     through: {
+      //       // This block of code allows you to retrieve the properties of the join table
+      //       model: db.BuddyInterests,
+      //       as: "buddyInterests"
+      //     }
+      //   }
+      // ]
+    }).then(function(dbInterest) {
+      res.render("interests", {
+        interest: dbInterest
+      });
+    });
+  });
+
   // Render find page for any finding buddies
   app.get("/find", function(req, res) {
     db.Interest.findAll({}).then(function(dbInterest) {

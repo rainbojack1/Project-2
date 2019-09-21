@@ -10,6 +10,5 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  BuddyInterest.removeAttribute("id");
   return BuddyInterest;
 };
